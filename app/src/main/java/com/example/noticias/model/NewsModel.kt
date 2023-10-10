@@ -5,5 +5,6 @@ data class NewsModel (
     val autor: String = "",
     val date: String = "",
     val description: String = "",
-    val title: String = ""
+    val title: String = "",
+    val url: String = ""
 )

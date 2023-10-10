@@ -9,7 +9,8 @@ import com.example.noticias.model.NewsModel
 
 class MainAdapter(
     private val itens: List<NewsModel>,
-    private val glide: RequestManager
+    private val glide: RequestManager,
+    private val itemClickListener: ItemClickListener
 ) : RecyclerView.Adapter<MainAdapter.MainViewHolder>() {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MainViewHolder {
         val binding = LayoutNewsItemListBinding.inflate(LayoutInflater.from(parent.context), parent, false)
@@ -32,7 +33,12 @@ class MainAdapter(
             binding.textTitleNews.text = item.title
             binding.textBodyNews.text = item.description
 
+            binding.root.setOnClickListener {
+                itemClickListener.openLink(item.url)
+            }
+
             glide.load(item.image).into(binding.imageNews)
+
         }
 
     }

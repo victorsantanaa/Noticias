@@ -15,6 +15,9 @@
         android:theme="@style/Theme.Noticias"
         tools:targetApi="31">
         <activity
+            android:name=".webview.WebViewActivity"
+            android:exported="false" />
+        <activity
             android:name=".view.MainActivity"
             android:exported="true">
             <intent-filter>

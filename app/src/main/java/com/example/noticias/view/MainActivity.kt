@@ -1,5 +1,7 @@
 package com.example.noticias.view
 
+import android.content.Intent
+import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
@@ -16,8 +18,9 @@ import com.example.noticias.service.RetrofitInstance
 import com.example.noticias.viewmodel.MainViewModel
 import com.example.noticias.viewmodel.MainViewModelFactory
 import com.example.noticias.viewmodel.MainViewState
+import com.example.noticias.webview.WebViewActivity
 
-class MainActivity : AppCompatActivity() {
+class MainActivity : AppCompatActivity(), ItemClickListener {
 
     private lateinit var binding: ActivityMainBinding
     private lateinit var viewModel: MainViewModel
@@ -60,7 +63,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun setupRecyclerView(news: ArrayList<NewsModel>) {
-        val adapter = MainAdapter(news, Glide.with(this))
+        val adapter = MainAdapter(news, Glide.with(this), this)
         binding.recyclerView.layoutManager = LinearLayoutManager(this)
         binding.recyclerView.adapter = adapter
     }
@@ -73,5 +76,11 @@ class MainActivity : AppCompatActivity() {
     private fun displayLoading() {
         binding.scrollView.visibility = View.GONE
         binding.loading.visibility = View.VISIBLE
+    }
+
+    override fun openLink(link: String) {
+        val intent = WebViewActivity.newInstance(this, link)
+        //intent.data = Uri.parse(link)
+        startActivity(intent)
     }
 }

@@ -9,18 +9,18 @@ object MainServiceMapper {
 
         val listOfNews = arrayListOf<NewsModel>()
 
-        response.newsList.forEach {item ->
+        response.newsList.forEach { item ->
 
             listOfNews.add(
                 NewsModel(
-                item.urlToImage ,
-                item.author,
-                item.date,
-                item.description,
-                item.title
+                    item.urlToImage,
+                    item.author,
+                    item.date,
+                    item.description,
+                    item.title,
+                    item.url
+                )
             )
-            )
-
         }
 
         return listOfNews

@@ -12,5 +12,8 @@ data class NewsListResponse(
     @SerializedName("urlToImage")
     val urlToImage: String,
     @SerializedName("publishedAt")
-    val date: String
+    val date: String,
+    @SerializedName("url")
+    val url: String
+
 )
